@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="shortcut icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<link rel="icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<link rel="stylesheet" href="css/default-style.css" type="text/css" media="all" />
+<title>ハイハイスクールアドベンチャー</title>
+<script type="text/javascript" src="js/graphics.js"></script>
+<script type="text/javascript" src="js/dictionary.js"></script>
+<script type="text/javascript" src="js/engine.js"></script>
+<script type="text/javascript" src="js/UserData.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/zSystem.js"></script>
+<script type="text/javascript" src="js/message.js"></script>
+<script type="text/javascript" src="js/database.js"></script>
+<script type="text/javascript" src="js/audio.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript">
+<!--
+var global;
+function start()
+{
+    global = new Global();
+    global.loadCompleted(go);
+}
+function go()
+{
+	global.loaded = () => global.draw_screen(true);
+	global.gameOverHandler = () => global.gameOver();
+	global.gameClearHandler = () => global.gameClear();
+    global.gameStart();
+}
+function doParse(form)
+{
+    global.parse(form.cmd.value);
+    form.cmd.value = "";
+    return false;
+}
+//-->
+</script>
+</head>
+<body onload="start()">
+<div class="screen">
+<div class="title">ハイハイスクールアドベンチャー</div>
+<div class="canvas_box"><canvas id="HHSAdv" class="canvas"></canvas></div>
+<form class="control_box" name="user_input" action="#" method="GET" onSubmit="return doParse(this)">
+どうする?
+<input type="text" name="cmd" class="txt" />
+</form>
+<div class="switch_box">
+	<label for="mute" class="switch_label">
+	<div class="switch">
+		<input type="checkbox" id="mute" checked="true" />
+		<div class="circle"></div>
+		<div class="base"></div>
+	</div>
+	<span class="label">MUTE</span>
+</label>
+</div>
+<div id="msgarea" class="message_box"></div>
+</div>
+</body>
+</html>

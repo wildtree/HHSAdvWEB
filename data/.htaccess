@@ -1,0 +1,5 @@
+<Files *>
+ <Limit GET>
+  Deny from all
+ </Limit>
+</Files>

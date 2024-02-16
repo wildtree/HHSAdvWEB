@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="refresh" content="30; URL=index.html" />
+<link rel="shortcut icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<link rel="icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<title>ハイハイスクールアドベンチャー</title>
+<script type="text/javascript">
+<!--
+var s;
+var div;
+const LIMIT = 30000; // 30sec == 30000 ms
+function initCount()
+{
+    var t = new Date();
+    s = t.getTime() + LIMIT;
+    div = document.getElementById("count");
+    countDown();
+}
+function countDown()
+{
+    var now = new Date();
+    var left = Math.floor((s - now.getTime()) / 1000);
+    if (left < 0)
+    {
+	left = 0;
+    }
+    div.innerHTML = "残り" + String(left) + "秒";
+    setTimeout("countDown()", 200);
+}
+// -->
+</script>
+</head>
+<body style="color: #cccccc; background: black; width: 640px; margin: auto;"
+      onload="initCount()">
+<p style="text-align: center; font-size: x-large;">
+ハイハイスクールアドベンチャー
+</p>
+<p>
+Project ZOBPlus
+</p>
+<p>
+<ul>
+<li>Hayami &lt;hayami@zob.jp&gt;</li>
+<li>Exit &lt;exit@zob.jp&gt;</li>
+<li>ezumi &lt;ezumi@zob.jp&gt;</li>
+<li>Ogu &lt;ogu@zob.jp&gt;</li>
+<li>neopara &lt;neopara@zob.jp&gt;</li>
+<li>hiro &lt;hiro@zob.jp&gt;</li>
+</ul>
+</p>
+<p>
+--- Original Staff ---
+</p>
+<p>
+Directed By HIRONOBU NAKAGUCHI<br />
+</p>
+<p>
+Graphic Designers:<br />
+ NOBUKO YANAGITA<br />
+ YUMIKO HOSONO<br />
+ HIRONOBU NAKAGUCHI<br />
+ TOSHIHIKO YANAGITA<br />
+ TOHRU OHYAMA<br />
+ MASANORI ISHII<br />
+ YASUSHI SHIGEHARA<br />
+ HIDETOSHI SUZUKI<br />
+ TATSUYA UCHIBORI<br />
+ MASAKI NOZAWA<br />
+ TOMOKO OHKAWA<br />
+ FUMIKAZU SHIRATSUCHI<br />
+ YASUNORI YAMADA<br />
+ MUNENORI TAKIMOTO<br />
+</p>
+<p>
+Message Converters:<br />
+ TATSUYA UCHIBORI<br />
+ HIDETOSHI SUZUKI<br />
+ YASUSHI SHIGEHARA<br />
+ YASUNORI YAMADA<br />
+</p>
+<p>
+Floppy Disk Converters:<br />
+ HIRONOBU NAKAGUCHI<br />
+</p>
+<p>
+Music:<br />
+ MASAO MIZOBE<br />
+</p>
+<p>
+Special Thanks To:<br />
+ HIROSHI YAMAMOTO<br />
+ TAKAYOSHI KASHIWAGI<br />
+</p>
+<p>
+Cooperate with:<br />
+ Furniture KASHIWAGI<br />
+ZAMA HIGH SCHOOL MICRO COMPUTER CIRCLE<br />
+</p>
+<p>
+<small>
+PalmOS version: hiro (c) 2002<br />
+Android version: hiro (c) 2011-2024<br />
+M5 version: hiro (c) 2023-2024<br />
+Qt version: hiro (c) 2024<br />
+WEB version: hiro (c) 2012-2024<br />
+</small>
+</p>
+<div id="count">
+</div>
+<form method="GET" action="index.html">
+<input type="submit" value="今すぐタイトルへ戻る" />
+</form>
+</body>
+</html>

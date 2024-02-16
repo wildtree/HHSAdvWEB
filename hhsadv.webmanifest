@@ -1,0 +1,20 @@
+{
+	"background_color": "black",
+	"description": "High High School Adventure WEB",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "icon/isako.png",
+			"sizes": "72x72",
+			"type": "image/png"
+		},
+		{
+			"src": "icon/isako144.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		}
+	],
+	"name": "ハイハイスクールアドベンチャー",
+	"short_name": "HHSAdv",
+	"start_url": "index.html"
+}

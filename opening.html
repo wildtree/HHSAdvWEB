@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="refresh" content="30; URL=game.html" />
+<link rel="shortcut icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<link rel="icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<title>ハイハイスクールアドベンチャー</title>
+<script type="text/javascript">
+<!--
+var s;
+var div;
+const LIMIT = 30000; // 30sec == 30000 ms
+function initCount()
+{
+    var t = new Date();
+    s = t.getTime() + LIMIT;
+    div = document.getElementById("count");
+    countDown();
+}
+function countDown()
+{
+    var now = new Date();
+    var left = Math.floor((s - now.getTime()) / 1000);
+    if (left < 0)
+    {
+	left = 0;
+    }
+    div.innerHTML = "残り" + String(left) + "秒";
+    setTimeout("countDown()", 200);
+}
+// -->
+</script>
+</head>
+<body style="color: #cccccc; background: black; width: 640px; margin: auto;"
+      onload="initCount()">
+<p>
+ 2019年神奈山県立ハイ高等学校は地盤が弱く校舎の老朽化も進んだため、とうとう廃校にする以外方法がなくなってしまった。
+</p>
+<p>
+ ところで大変な情報を手に入れた。
+</p>
+<p>
+ それは、
+</p>
+<p style="text-align: center; font-size: x-large; color: red;">
+「ハイ高校にＡＴＯＭＩＣ ＢＯＭＢが仕掛けられている。」
+</p>
+<p>
+と、いうものだ。
+</p>
+<p>
+ どうやらハイ高が廃校になった時、気が狂った理科の先生がＡＴＯＭＩＣ ＢＯＭＢを学校のどこかに仕掛けてしまったらしい。
+</p>
+<p>
+ お願いだ。我が母校のコナゴナになった姿を見たくはない。早くＡＴＯＭＩＣ ＢＯＭＢを取り除いてくれ……！
+</p>
+<p>
+ 行動は英語で、&quot;&lt;動詞&gt;&quot; 或いは、&quot;&lt;動詞&gt; + &lt;目的語&gt;&quot;のように入れていただきたい。
+ 例えば、&quot;look room&quot;と入れれば部屋の様子を見ることが出来るという訳だ。
+</p>
+<p style="font-size: x-large;">
+ それでは Ｇｏｏｄ Ｌｕｃｋ！！！............
+</p>
+<p>
+ゲームのセーブデータはブラウザ内に保持されサーバ側には通知されません。
+</p>
+<div id="count">
+</div>
+<form method="GET" action="game.html">
+<input type="submit" value="今すぐスタート" />
+</form>
+</body>
+</html>

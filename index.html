@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="shortcut icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<link rel="icon" href="icon/isako.ico" type="image/vnd.microsoft.icon" />
+<link rel="manifest" href="hhsadv.webmanifest" />
+<link rel="stylesheet" href="css/default-style.css" type="text/css" media="all" />
+<title>ハイハイスクールアドベンチャー</title>
+
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="js/UserData.js"></script>
+<script type="text/javascript" src="js/database.js"></script>
+<script type="text/javascript" src="js/dictionary.js"></script>
+<script type="text/javascript" src="js/engine.js"></script>
+<script type="text/javascript" src="js/graphics.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/message.js"></script>
+<script type="text/javascript" src="js/audio.js"></script>
+<script type="text/javascript" src="js/zSystem.js"></script>
+<script type="text/javascript">
+<!--
+var global;
+function onStart()
+{
+	if ('serviceWorker' in navigator)
+	{
+		navigator.serviceWorker.register('sw.js');
+	}
+	global = new Global();
+	global.loadCompleted(loadTitle);
+}
+function loadTitle()
+{
+	global.maps.get(76).draw(global.graphics);
+	global.graphics.gflush();
+}
+// -->
+</script>
+</head>
+<body onLoad="onStart()">
+<div class="screen">
+<div class="canvas_box"><canvas id="HHSAdv" class="canvas"></canvas></div>
+<div class="title">
+ハイハイスクールアドベンチャー
+</div>
+<div class="credit_box">
+Copyright(c)2012-2024 ZOBplus hiro &lt;<a href="mailto:hiro@zob.jp">hiro@zob.jp</a>&gt;<br />
+Copyright(c)1995 ZOBplus<br />
+</div>
+<form method="GET" action="game.html">
+<input type="submit" value="ゲームスタート" />
+</form>
+<form method="GET" action="opening.html">
+<input type="submit" value="説明を見てからスタート" />
+</form>
+</div>
+</body>
+</html>
