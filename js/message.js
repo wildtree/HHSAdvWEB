@@ -130,19 +130,20 @@ class Message
     {
 		if (this._innerBuffer.length >= this._maxLines)
 		{
-	    	var drop = this._innerBuffer.shift();
+	    		var drop = this._innerBuffer.shift();
 		}
 		this._innerBuffer.push(str);
 		var o = "";
 		for (var i = 0 ; i < this._innerBuffer.length ; i++)
 		{
-	    	o += this._innerBuffer[i] + "<br />";
+	    		o += this._innerBuffer[i] + "<br />";
 		}
 	
 		var div = document.getElementById("msgarea");
 		if (div != null)
 		{
-	    	div.innerHTML = o;
+	    		div.innerHTML = o;
+			div.scrollTop = div.scrollHeight;
 		}
     }
     print(msgid) 
@@ -169,8 +170,56 @@ class Message
     }
     gameClear()
     {
-		this.output("Ｃｏｎｇｒａｔｕｌａｔｉｏｎｓ！");
+	this.output("Ｃｏｎｇｒａｔｕｌａｔｉｏｎｓ！");
+	// window.confirm("Ｃｏｎｇｒａｔｕｌａｔｉｏｎｓ！\nあなたはハイハイスクールの危機を救いました！感謝します！\n\nタイトル画面へ戻ります。");
+	// document.location = "ending.html";
+    	const container = document.getElementById('credits_container');
+    	const content = document.getElementById('credits_content');
+	const durationSeconds = 35; // 35 seconds
+
+    	// 1. コンテナを表示
+    	container.style.display = 'block';
+
+	// 2. 🔴 重要な修正: スクロール開始位置を画面の下に設定
+    	// contentは bottom: 0; がCSSで設定されているため、初期位置はOKです。
+    	// まずアニメーションを停止してリセット
+    	content.style.animation = 'none';
+    
+    	// 3. 高さと距離を計測
+    
+    	// ブラウザにDOMをレンダリング（描画）させるためのハック。
+    	// これがないと、display: block にしても contentHeight が 0 になることがある。
+    	void content.offsetHeight; 
+
+    	const viewportHeight = window.innerHeight;
+    	const contentHeight = content.offsetHeight; // ここで正しい高さを取得
+    
+    	// 総移動距離：コンテンツの高さ + 画面の高さ
+    	const totalDistance = contentHeight + viewportHeight; 
+	// 最終的なtransform値（上に移動＝負の値）
+    	const finalTransformValue = -contentHeight; // 最終的にコンテンツが画面上へ完全に消える位置
+    
+    	// カスタムCSS変数を定義
+    	content.style.setProperty('--scroll-distance', `-${contentHeight}px`);
+    
+    	// 4. アニメーションを再開・設定
+    	const animationName = 'scrollUpCustom';
+    
+    	// durationSeconds をCSSアニメーションの duration に設定
+    	content.style.animationName = animationName;
+    	content.style.animationDuration = `${durationSeconds}s`;
+
+    	// animation-timing-function: linear; （一定速度で滑らかに）
+    	content.style.animationTimingFunction = 'linear';
+
+    	// animation-fill-mode: forwards; （終了時に最後のフレームの状態を維持）
+    	content.style.animationFillMode = 'forwards';
+
+    	// 3. アニメーション終了時の処理 (任意: 画面を閉じるなど)
+    	content.addEventListener('animationend', () => {
+        	container.style.display = 'none'; // 終了後に画面を非表示にする場合
 		window.confirm("Ｃｏｎｇｒａｔｕｌａｔｉｏｎｓ！\nあなたはハイハイスクールの危機を救いました！感謝します！\n\nタイトル画面へ戻ります。");
-		document.location = "ending.html";
+		document.location = "index.html";
+    	}, { once: true });
     }
 }

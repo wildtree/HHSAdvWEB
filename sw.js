@@ -2,7 +2,7 @@
 //  Copyright(c)2024 Hiroyuki Araki <hiro@zob.jp>
 
 // cache
-var CACHE_NAME = 'hhsadv-caches';
+var CACHE_NAME = 'hhsadv-caches-v3.8';
 var urlsToCache = [
 	'ending.html',
 	'game.html',
@@ -48,4 +48,36 @@ self.addEventListener('fetch', (event) => {
 			return res ? res : fetch(event.request);
 		})
 	);
+});
+
+// update
+self.addEventListener('activate', (event) => {
+  const cacheWhitelist = []; // 現在有効なキャッシュ名
+
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          // 現在のバージョンに含まれていない（古い）キャッシュを削除
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            console.log('古いキャッシュを削除:', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+    // すべてのキャッシュ削除が完了したら、クライアントへの制御を引き継ぐ
+    .then(() => self.clients.claim())
+  );
+  
+  event.waitUntil(
+    // すべてのクライアントに更新完了を通知
+    self.clients.claim().then(() => {
+      self.clients.matchAll().then((clients) => {
+        clients.forEach(client => {
+          client.postMessage({ type: 'UPDATE_AVAILABLE' });
+        });
+      });
+    })
+  );
 });

@@ -88,13 +88,18 @@
 	}
 }
 
-body {
+html, body {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
+	overflow: hidden;
 }
 
 .screen {
-	width: 100%;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }
 
 .title {
@@ -107,6 +112,9 @@ body {
 }
 
 .message_box {
+	flex-grow: 1;
+	overflow-y: auto;
+	box-sizing: border-box;
 	background: #000000; 
 	color: #ffffff; 
 	text-align: left; 
@@ -199,4 +207,134 @@ body {
 .switch input:checked ~ .circle {
 	transform: translateX(100%);
 	background-color: blue;
+}
+
+/* クレジットロール全体を画面中央に固定 */
+#credits_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95); /* 半透明の暗い背景 */
+    color: white;
+    overflow: hidden; /* スクロールバー非表示 */
+    display: none; /* 初期状態では非表示 */
+    z-index: 1000; /* 他の要素より手前に表示 */
+}
+
+/* クレジットの内容のスタイル */
+#credits_content {
+    /* 画面下端から開始するため、初期位置を設定 */
+    /*
+    position: absolute;
+    bottom: 0;
+    */
+    width: 100%;
+
+    /* テキストを中央揃え */
+    text-align: center;
+    font-family: sans-serif;
+    padding: 0 20px;
+
+    /* アニメーションを初期状態では適用しない */
+    animation: none;
+    /* 🔴 初期状態では、コンテンツ全体を画面下に配置する */
+    transform: translateY(100vh);
+    /* 100vh は画面の高さの100%分下へ移動することを意味します */
+}
+
+/* クレジットの内容のフォント装飾 */
+#credits-content h1 {
+    font-size: 2.5em;
+    margin-top: 50px;
+    color: #ffd700; /* ゴールド */
+}
+
+#credits-content h2 {
+    font-size: 1.5em;
+    margin-top: 40px;
+    border-bottom: 1px solid #ffffff60;
+    padding-bottom: 5px;
+}
+
+#credits-content p {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+/* スクロールアニメーションの定義 */
+/* contentの高さを利用して、画面外へ完全に移動させる */
+@keyframes scrollUp {
+    from {
+        /* 初期位置: 画面下端（bottom: 0） */
+        transform: translateY(0);
+    }
+    to {
+        /* 終了位置: 要素自身の高さ分だけ上に移動 */
+        /* translateY(-100%) は要素の高さの -100% を意味します */
+        transform: translateY(-100%);
+    }
+}
+
+/* テーマ関連 */
+
+.dark-theme {
+	background-color: #121212;
+	color: #f0f0f0;
+}
+
+/* 基本のボタン要素のスタイル (ライトモード) */
+button {
+  padding: 8px 15px;
+  border: 1px solid #aaa;
+  background-color: #f0f0f0; /* 明るい背景 */
+  color: #333333;           /* 濃い文字色 */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+/* bodyに .dark-theme が付いたときのボタンのスタイル (ダークモード) */
+.dark-theme button {
+  border: 1px solid #555;
+  background-color: #505050; /* 暗い背景 */
+  color: #ffffff;           /* 明るい文字色 */
+}
+
+.dark-theme button:hover {
+  background-color: #6a6a6a;
+}
+
+.button_container {
+  /* 1. Flexbox を有効にする */
+  display: flex;
+
+  /* 2. 子要素（<form>タグ）を中央に寄せる */
+  justify-content: center;
+
+  /* 3. ボタンとボタンの間にスペースを空ける (任意) */
+  gap: 20px;
+}
+
+/* フォーム要素が横幅いっぱいに広がらないようにする (任意) */
+/* Flexアイテムのデフォルトは stretch ですが、ここでは内容物の幅に合わせます */
+.button_container form {
+    /* フォームはデフォルトで block 要素なので、Flexboxアイテムとして機能します */
+    /* 特に何も設定しなくても、通常は横並びになります */
+}
+
+/* JavaScriptから渡された --scroll-distance を使うカスタムアニメーション */
+@keyframes scrollUpCustom {
+    from {
+        /* 画面下端（bottom: 0） */
+        transform: translateY(100vh);
+    }
+    to {
+        /* JSで計算された「コンテンツ高さ + 画面高さ」分だけ上に移動 */
+        transform: translateY(var(--scroll-distance));
+    }
 }

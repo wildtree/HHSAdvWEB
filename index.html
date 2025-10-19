@@ -26,6 +26,15 @@ function onStart()
 {
 	if ('serviceWorker' in navigator)
 	{
+		navigator.serviceWorker.addEventListener('message', (event) => {
+			if (event.data && event.data.type == 'UPDATE_AVAILABLE') {
+				const shouldReload = confirm('更新が利用可能です。更新しますか？');
+				if (shouldReload)
+				{
+					window.locaation.reload();
+				}
+			}
+		});
 		navigator.serviceWorker.register('sw.js');
 	}
 	global = new Global();
@@ -46,15 +55,19 @@ function loadTitle()
 ハイハイスクールアドベンチャー
 </div>
 <div class="credit_box">
-Copyright(c)2012-2024 ZOBplus hiro &lt;<a href="mailto:hiro@zob.jp">hiro@zob.jp</a>&gt;<br />
+Copyright(c)2012-2025 ZOBplus hiro &lt;<a href="mailto:hiro@zob.jp">hiro@zob.jp</a>&gt;<br />
 Copyright(c)1995 ZOBplus<br />
 </div>
-<form method="GET" action="game.html">
-<input type="submit" value="ゲームスタート" />
-</form>
-<form method="GET" action="opening.html">
-<input type="submit" value="説明を見てからスタート" />
-</form>
+<div>
+	<div class='button_container'>
+		<form method="GET" action="game.html">
+			<input type="submit" value="ゲームスタート" />
+		</form>
+		<form method="GET" action="opening.html">
+			<input type="submit" value="説明を見てからスタート" />
+		</form>
+	</div>
+</div>
 </div>
 </body>
 </html>

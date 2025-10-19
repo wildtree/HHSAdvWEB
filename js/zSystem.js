@@ -8,6 +8,21 @@ class ZSystem
     constructor()
     {
         this._table = new Uint8Array(8);
+	this._darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+	this.applySystemTheme(this._darkModeQuery);
+	this._darkModeQuery.addListener(this.applySystemTheme);
+
+    }
+    applySystemTheme(e)
+    {
+	if (e.matches)
+	{
+	    document.body.classList.add('dark-theme')
+	}
+	else
+	{
+	    document.body.classList.remove('dark-theme')
+	}
     }
     
     get packed_size() { return 8;}
