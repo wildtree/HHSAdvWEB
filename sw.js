@@ -2,7 +2,7 @@
 //  Copyright(c)2024 Hiroyuki Araki <hiro@zob.jp>
 
 // cache
-var CACHE_NAME = 'hhsadv-caches-v3.8';
+var CACHE_NAME = 'hhsadv-caches-v3.9';
 var urlsToCache = [
 	'ending.html',
 	'game.html',
